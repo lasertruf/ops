@@ -1,0 +1,8 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
+  .mat-toolbar{
+      background-color: #3ab2ae;
+      font-family: 'Saira', sans-serif;;
+  }

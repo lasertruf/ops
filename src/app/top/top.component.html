@@ -1,0 +1,14 @@
+<mat-toolbar   >
+    <span>CQ MEAN Stack Project</span>
+    <span class="example-spacer"></span>
+  
+    <button *ngIf="signinstatusvar" #tooltip="matTooltip"
+    matTooltip="Sign Out"
+    
+    matTooltipHideDelay="100"
+     mat-icon-button class="example-icon " aria-label="Sign Out"  (click)="reload()">
+        <mat-icon>logout</mat-icon>
+    </button>
+
+    
+  </mat-toolbar>

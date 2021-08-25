@@ -1,0 +1,31 @@
+<div > 
+  <!-- <button mat-raised-button (click)="refreshTable()">REFRESH TABLE</button> -->
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+    <ng-container *ngFor="let column of columnss" [matColumnDef]="column.columnDef">
+      <th mat-header-cell *matHeaderCellDef>
+        {{column.header}}
+      </th>
+      
+      <td mat-cell *matCellDef="let r">
+        {{column.cell(r)}}
+        <button mat-raised-button color="primary" *ngIf=" column.header == 'Options' && (r.email == currmail || currpass == adminpass) " (click)="onEdit(r)"> EDIT</button>
+        <button mat-raised-button color="warn" *ngIf=" column.header == 'Options' && (currpass==adminpass||r.email == currmail) " (click)="onDelete(r)"> DELETE</button>
+     
+    
+      </td>
+
+   
+      <!-- <td> -->
+      
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    
+
+
+  </table>
+
+</div>

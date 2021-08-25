@@ -1,0 +1,71 @@
+
+
+<div >
+<form  [formGroup]="editform" action="">
+<h1 mat-dialog-title>Edit Details</h1>
+
+<div mat-dialog-content>
+
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Email</mat-label>
+<input type="email" matInput formControlName="email" [(ngModel)]="data.email" required> 
+<mat-error>
+  Invalid Email.
+</mat-error>
+</mat-form-field>
+
+<mat-form-field class="example-full-width" appearance="fill">
+  <mat-label>First Name</mat-label>
+  <input type="text" matInput formControlName="fname" [(ngModel)]="data.fname" required>
+  <mat-error>
+    Required.
+  </mat-error>
+  </mat-form-field>
+  
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Last Name</mat-label>
+    <input type="text" formControlName="lname" matInput [(ngModel)]="data.lname" required>
+    <mat-error>
+      Required.
+    </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <!-- <mat-label>Sex</mat-label>
+      <input type="text" formControlName="sex" matInput [(ngModel)]="data.sex"> -->
+      <mat-label>Sex</mat-label>
+      <mat-select  ngDefaultControl [(ngModel)]="data.sex" formControlName="sex"  required >
+        <!-- <mat-option>Select</mat-option> -->
+        <mat-option  *ngFor="let s of sexarr" [value]="s.value">
+          {{s.value}}
+        </mat-option>
+       </mat-select> 
+      <mat-error>
+        Required.
+      </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Contact</mat-label>
+        <input type="text" formControlName="contact" matInput [(ngModel)]="data.contact" required>
+        <mat-error>
+          Required a valid 10 digit contact number.
+        </mat-error>
+        </mat-form-field>
+
+      
+
+</div>
+
+
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>CLOSE</button>
+  <button mat-raised-button mat-dialog-close (click)="editDialog()"  [disabled]="editform.invalid">SUBMIT</button>
+</div>
+
+
+
+
+
+</form>
+</div>

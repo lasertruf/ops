@@ -1,0 +1,131 @@
+<div class="outer">  
+
+    <mat-tab-group>
+        <mat-tab label="SIGN UP"> 
+<form class="example-form" [formGroup]="signupform">
+   <h2>SIGN UP FORM</h2>
+    <table class="example-full-width" cellspacing="0"><tr>
+        <td><mat-form-field class="example-full-width" appearance="fill">
+          <mat-label color="primary" > First name</mat-label>
+          <input matInput  type="text"  [(ngModel)]="fname" formControlName="fname"   required>
+          <mat-error *ngIf="fnameFormControl.hasError('required')">
+            First name is required.
+         </mat-error>
+        </mat-form-field></td>
+        <td><mat-form-field class="example-full-width" appearance="fill">
+          <mat-label> Last Name </mat-label>
+          <input  matInput formControlName="lname" type="text"  [(ngModel)]="lname"  required>
+          <mat-error *ngIf="lnameFormControl.hasError('required')">
+            Last name is required.
+         </mat-error>
+        </mat-form-field></td>
+      </tr></table>
+  
+
+    
+      <mat-form-field appearance="fill">
+        <mat-label>Sex</mat-label>
+        <mat-select placeholder="Select" ngDefaultControl [(ngModel)]="sex" formControlName="sex"   >
+          <!-- <mat-option>Select</mat-option> -->
+          <mat-option  *ngFor="let s of sexarr" [value]="s.value">
+            {{s.value}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="sexFormControl.hasError('required')">
+            This field cannot be empty.
+          </mat-error>
+      </mat-form-field>
+    
+
+      <!-- [formControl]="emailFormControl" -->
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Email</mat-label>
+      <input  required type="email" formControlName="email" [(ngModel)]="email" matInput  placeholder="Ex. pat@example.com">
+      <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="emailFormControl.hasError('required')">
+        Email is required.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Contact Number</mat-label>
+        <input required type="text" formControlName="contactno" [(ngModel)]="contactno"  matInput  placeholder="Enter a 10 digit number,Ex. 9876543210">
+        <mat-error *ngIf="checkError('contactno', 'pattern') && !checkError('contactno', 'required')">
+          Please enter a valid 10 digit contact number.
+        </mat-error>
+        <mat-error *ngIf="checkError('contactno', 'required')">
+          A valid 10 digit contact number is required.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Password</mat-label>
+        <input required minlength="8" formControlName="newpassword" [type]="hide ? 'password' : 'text'" [(ngModel)]="newpassword" placeholder="Minimum password length should be 8 characters" matInput  >
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="checkError('newpassword', 'minlength') && !checkError('newpassword', 'required')" >
+          Minimum password length should be 8 characters 
+        </mat-error>
+        <mat-error *ngIf="checkError('newpassword', 'required')">
+          Password of 8 minimum characters required.
+         
+        </mat-error>       
+      </mat-form-field>
+
+      <!-- signupform.controls['newpassword'].errors?.minlength
+      *ngIf="checkError('newpassword', 'minlength')"
+     -->
+<div style="display: flex; ">
+
+      <button mat-raised-button color="primary"  type="reset" (click)="signup()"> SIGN UP</button>
+      
+      <button style="margin-left: 10px;" mat-raised-button color="primary" type="reset" (click)=signupform.reset()> RESET</button>
+      
+    </div>
+
+
+  </form>
+
+</mat-tab>
+
+
+<mat-tab label="SIGN IN"> 
+    <form class="example-form">
+    <h2>SIGN IN</h2>
+   
+  
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Email</mat-label>
+      <input required type="email" [(ngModel)]="email" matInput [formControl]="emailFormControl" placeholder="Ex. pat@example.com">
+      <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="emailFormControl.hasError('required')">
+        Email is required.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Password</mat-label>
+        <input required [type]="hide ? 'password' : 'text'"  [(ngModel)]="password"  matInput [formControl]="passwordFormControl" required>
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="passwordFormControl.hasError('required')">
+          Password is required.
+        </mat-error>
+      </mat-form-field>
+
+
+      <button mat-raised-button color="primary"  (click)=signin()> SIGN IN</button>
+
+    </form>
+
+</mat-tab>
+
+</mat-tab-group>
+</div>

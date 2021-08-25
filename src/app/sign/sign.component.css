@@ -1,0 +1,48 @@
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    /* background-color: rgba(144, 155, 151, 0.788); */
+    background-color: rgba(238, 237, 237, 0.774);
+    width: 100%;
+    padding-left: 50px;
+    padding: 50px;
+    margin-left: 20px;
+    margin-top: 20px;
+    padding-top: 50px;
+    border-radius: 20px;
+  }
+  
+  .example-full-width {
+    width: 100%;
+    padding-left: 0;
+   
+  }
+
+  .outer{
+    height: 700px;
+
+    background-image: url('../../bgi.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-color: rgba(173, 172, 172, 0.527);
+  /* background-color: rgba(173, 172, 172, 0.527); */
+  
+  background-blend-mode: lighten;
+ 
+  
+  background-size: cover;
+  }
+
+    
+  .mat-raised-button{
+
+    /* background-color: #3ab2ae;
+    color: rgb(22, 22, 22); */
+width: 250px;
+
+  }
+
+  .mat-tab-label{
+    background-color: #3ab2ae;
+    color: #3ab2ae;
+  }
