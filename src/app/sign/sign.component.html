@@ -81,7 +81,7 @@
      -->
 <div style="display: flex; ">
 
-      <button mat-raised-button color="primary"  type="reset" (click)="signup()"> SIGN UP</button>
+      <button mat-raised-button color="primary"  type="reset" (click)="signup()" [disabled]="signupform.invalid"> SIGN UP</button>
       
       <button style="margin-left: 10px;" mat-raised-button color="primary" type="reset" (click)=signupform.reset()> RESET</button>
       
