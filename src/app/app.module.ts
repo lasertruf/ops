@@ -14,8 +14,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatDialogModule} from '@angular/material/dialog'; 
 import {MatToolbarModule} from '@angular/material/toolbar'; 
 import {MatTooltipModule} from '@angular/material/tooltip'; 
-
-
+import {Ng2SearchPipeModule } from 'ng2-search-filter'
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -55,6 +54,7 @@ import { TopComponent } from './top/top.component'
     MatDialogModule,
     MatToolbarModule,
     MatTooltipModule,
+    Ng2SearchPipeModule ,
 
 
   ],

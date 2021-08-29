@@ -4,7 +4,7 @@ export interface uinfo{
     lname : string;
     sex : string;
     email : string;
-    contact : string;
+  
     password : string;
     date : string;
 }

@@ -1,7 +1,10 @@
+
 <div class="outer">  
 
-    <mat-tab-group>
-        <mat-tab label="SIGN UP"> 
+    <mat-tab-group  >
+
+        <mat-tab  label="SIGN UP"  > 
+          
 <form class="example-form" [formGroup]="signupform">
    <h2>SIGN UP FORM</h2>
     <table class="example-full-width" cellspacing="0"><tr>
@@ -24,7 +27,7 @@
 
     
       <mat-form-field appearance="fill">
-        <mat-label>Sex</mat-label>
+        <mat-label>Seller or Buyer</mat-label>
         <mat-select placeholder="Select" ngDefaultControl [(ngModel)]="sex" formControlName="sex"   >
           <!-- <mat-option>Select</mat-option> -->
           <mat-option  *ngFor="let s of sexarr" [value]="s.value">
@@ -50,16 +53,7 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Contact Number</mat-label>
-        <input required type="text" formControlName="contactno" [(ngModel)]="contactno"  matInput  placeholder="Enter a 10 digit number,Ex. 9876543210">
-        <mat-error *ngIf="checkError('contactno', 'pattern') && !checkError('contactno', 'required')">
-          Please enter a valid 10 digit contact number.
-        </mat-error>
-        <mat-error *ngIf="checkError('contactno', 'required')">
-          A valid 10 digit contact number is required.
-        </mat-error>
-      </mat-form-field>
+    
 
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Password</mat-label>

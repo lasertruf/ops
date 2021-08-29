@@ -1,15 +1,20 @@
 <app-top></app-top>
+
+
+
+
 <div *ngIf="!signinstatusvar">
    
    
  
     <app-sign></app-sign>
+    
 
 </div>
 
 <div *ngIf="signinstatusvar" >
 
-    <app-table></app-table>
+   <app-login></app-login>
 
 
     <!-- <app-dialog></app-dialog> -->

@@ -159,20 +159,22 @@ this.editform = this.fb.group({
   }
 
   editDialog(){
-    if(this.editform.valid){
+    // if(this.editform.valid){
 
     
-     this.arr=this.uss.fetchuinfo();
-     this.uss.editUser(this.data.fname,this.data.lname,this.data.sex,this.data.email,
-     this.data.contact,this.arr.password,this.arr._id, this.arr.date);
-     this.uss.editvar=true;
+    //  this.arr=this.uss.fetchuinfo();
+    //  this.uss.editUser(this.data.fname,this.data.lname,this.data.sex,this.data.email,
+    //  this.arr.password,this.arr._id, this.arr.date);
+    //  this.uss.editvar=true;
 
-     alert("Submitted successfully")
 
-       }
-       else if (this.editform.invalid){
-         alert("Please recheck the data entered")
-       }
+
+    //  alert("Submitted successfully")
+
+    //    }
+    //    else if (this.editform.invalid){
+    //      alert("Please recheck the data entered")
+    //    }
 
       }
 

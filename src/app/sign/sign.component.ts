@@ -67,15 +67,15 @@ export class SignComponent implements OnInit {
   hide : boolean = true;
   userarr : uinfo [] =[];
   sexarr = [
-    {value: 'Male'},
-    {value: 'Female'},
-    {value: 'Other'}
+    {value: 'Seller'},
+    {value: 'Customer'}
+   
   ];
 
 
 checkError: any ;
 
-   
+   sorb !: string;
 
 
   constructor(public uss : userservice, public fb : FormBuilder,          
@@ -103,7 +103,6 @@ checkError: any ;
       lname: ['', Validators.required],
       sex: ['', Validators.required],
       email: ['', [Validators.required,Validators.email]],
-      contactno: ['',[Validators.required, Validators.maxLength(10),Validators.minLength(10), Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$") ]],
       newpassword: ['',[Validators.minLength(8),Validators.required ]],
     });    
   
@@ -135,7 +134,7 @@ console.log("signupform.valid " +this.signupform.valid);
    console.log(dateformatted);
     
    
-   this.uss.addUsertoDB(this.fname,this.lname,this.sex,this.email,this.contactno,this.newpassword,dateformatted);
+   this.uss.addUsertoDB(this.fname,this.lname,this.sex,this.email,this.newpassword);
 
   
    
@@ -184,7 +183,8 @@ for (let index = 0; index < this.userarr.length; index++) {
               
               if( this.password == dpass || r[index].password )
               {
-                console.log(" LOGIN Success");   
+                console.log(" LOGIN Success");  
+                this.sorb = r[index].sorb; 
                 this.isSignin=true; 
                 alert("Sign In Success");
                 
@@ -201,7 +201,7 @@ for (let index = 0; index < this.userarr.length; index++) {
   
 }
 
-this.uss.signinStatus(this.isSignin,this.email,this.password);
+this.uss.signinStatus(this.isSignin,this.email,this.password,this.sorb);
 
 
 if(this.isSignin == false)
@@ -212,11 +212,6 @@ if(this.isSignin == false)
   
 }
 
-
-
-
-  
-  
  }
 
 }

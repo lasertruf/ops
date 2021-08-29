@@ -1,1 +1,172 @@
-<p>login works!</p>
+<!-- CUSTOMER SECTION -->
+  
+<div  *ngIf="sorb=='Customer'" style="display: flex; justify-content: center;">
+
+ <div style="min-width: 500px;"> 
+  <br>
+  <h2>Search the store:</h2>
+  <mat-form-field class="searchbar" appearance="fill">
+  <mat-label color="primary" > What are you looking to read today...</mat-label>
+  <input matInput   placeholder="Ex. Fire And Blood" type="text"  [(ngModel)]="searchbname" >
+</mat-form-field> 
+
+
+
+</div>
+
+</div>
+
+<div *ngIf="sorb=='Customer'"  >
+  <h2 style="padding-left: 10px;">Books Available :</h2>
+  <div style="overflow-y: scroll; max-height: 200px; max-width: 350px;">
+<div *ngFor="let user of userarr | filter:searchbname "  >
+  <div *ngIf="user.sorb == 'Seller'">
+  <div *ngFor="let b of user.books | filter:searchbname">
+<div style="display: flex; padding-left: 10px;" >  
+
+    <div><h3>  {{ b.bname }} by {{b.authname}}</h3> </div> 
+  <div style="padding-left: 5px;"> <button mat-raised-button color="primary" (click)="buy(user,b)"> Buy </button> </div>
+
+</div>
+</div>  
+</div>
+</div>
+</div>
+</div>
+
+
+
+<!-- SELLER SECTION -->
+
+<div *ngIf="sorb=='Seller'">
+
+
+<div class="wrapperflex">
+
+
+<div>
+    <h2>{{editbookformvar? 'Edit Book': 'Add Book'}}</h2>
+<form [formGroup]="bookform"> 
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label color="primary" > Book Name</mat-label>
+        <input matInput  type="text"  [(ngModel)]="bname" formControlName="bname"   required>
+        
+        <mat-error *ngIf="bnameFormControl.hasError('required')">
+          Required.
+       </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label color="primary" > Author</mat-label>
+        <input matInput  type="text"  [(ngModel)]="authname" formControlName="authname"   required>
+        <mat-error *ngIf="authnameFormControl.hasError('required')">
+        Required.
+       </mat-error>
+      </mat-form-field>
+
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label color="primary" > Quantity</mat-label>
+        <input matInput  type="number"  [(ngModel)]="qty" formControlName="qty"   required>
+        <mat-error *ngIf="qtyFormControl.hasError('required')">
+        Required.
+       </mat-error>
+      </mat-form-field>
+
+      
+    
+
+    <button mat-raised-button  (click)="submit()" [disabled]="bookform.invalid"> SUBMIT</button>
+    <button mat-raised-button color="warn" type="reset"  (click)="reset()" > RESET</button>
+
+  </form>  
+
+</div>
+
+
+<div style="min-width: 200px;">
+    <h2>Sold Books</h2>
+
+    <div  *ngFor="let sb of soldbooksarr">
+      <div *ngIf="sb.selleremail == curremail">
+      <div *ngFor="let i of sb.soldbooks">
+        <h3>  Bookname : {{i.bname }} <br> Author : {{i.authname}} <br>  </h3> 
+        <hr>
+      </div>
+
+
+    </div>
+
+    </div>
+</div>
+
+
+<div style="min-width: 200px; font-family: Arial, Helvetica, sans-serif;">
+
+  <h2> Your Books</h2>
+ <div *ngFor="let l of userarr">
+  <div *ngIf="l.email == curremail">
+   <div *ngFor="let r of l.books">
+      
+  
+  <h3>  Bookname : {{r.bname }} <br> Author : {{r.authname}} <br>  </h3> 
+  
+    <button mat-raised-button color="primary" (click)="editbookformfunc(l,r)">EDIT</button>
+   <button mat-raised-button color="warn"  (click)=delete(l,r)>DELETE</button>
+
+    <br>
+
+    <hr>
+     </div>
+   </div>
+            
+ </div>
+  
+</div>
+<!-- your books end above -->
+
+<!-- edit books form -->
+<!-- <div *ngIf="editbookformvar">
+  <h2>{{editbookformvar? 'Edit Book': 'Add Book'}}</h2>
+<form [formGroup]="bookeditform"> 
+  <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label color="primary" > Book Name</mat-label>
+      <input matInput  type="text"  [(ngModel)]="bname" formControlName="bname"   required>
+      
+      <mat-error *ngIf="bnameFormControl.hasError('required')">
+        Required.
+     </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label color="primary" > Author</mat-label>
+      <input matInput  type="text"  [(ngModel)]="authname" formControlName="authname"   required>
+      <mat-error *ngIf="authnameFormControl.hasError('required')">
+      Required.
+     </mat-error>
+    </mat-form-field>
+
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label color="primary" > Quantity</mat-label>
+      <input matInput  type="number"  [(ngModel)]="qty" formControlName="qty"   required>
+      <mat-error *ngIf="qtyFormControl.hasError('required')">
+      Required.
+     </mat-error>
+    </mat-form-field>
+
+    
+  
+
+  <button mat-raised-button  (click)="submit()"> SUBMIT</button>
+  <button mat-raised-button color="warn" type="reset"  > RESET</button>
+
+</form>  
+
+</div> -->
+<!-- edit books ends above -->
+
+</div>
+<!-- wrapper ends above -->
+
+</div>

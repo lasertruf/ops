@@ -1,0 +1,27 @@
+.wrapperflex{
+    display: flex;
+    flex-direction: row;
+    
+    max-width: 500px;
+}
+
+.wrapperflex > div {
+    margin-left: 10%;
+  }
+
+    
+  .example-full-width {
+    width: 100%;
+    max-width: 260px;
+    padding-left: 0;
+   
+  }
+
+  .searchbar {
+    width: 100%;
+    min-width: 500px;
+    padding-left: 0;
+   
+  }
+
+  

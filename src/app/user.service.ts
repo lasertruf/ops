@@ -20,7 +20,7 @@ editvar : boolean = false;
   fname!: string;
   lname!: string;
   email!: string;
-  contactno!: string;
+ // contactno!: string;
   password!: string;
   newpassword!: string;
   sex!: string;
@@ -35,6 +35,8 @@ editvar : boolean = false;
   ];
 signinStatusvar : boolean =false;
 currentusermail! : string;
+currentusersorb! : string;
+
 currentuserpassword!: string;
     sup : boolean = false;
 
@@ -44,15 +46,16 @@ currentuserpassword!: string;
 
     }
 
-    signinStatus(x:boolean, usermail : string, pass:string){
+    signinStatus(x:boolean, usermail : string, pass:string, sorb : string){
 
         this.signinStatusvar=x;
         this.currentusermail=usermail;
         this.currentuserpassword=pass;
+        this.currentusersorb=sorb;
         
     }
 
-    returnCUrrentusermail()
+    returnCurrentusermail()
     {
         return this.currentusermail;
     }
@@ -95,6 +98,10 @@ currentuserpassword!: string;
         this.updatedUsers.next([...this.arr]);
         return this.updatedUsers.asObservable();
     }
+    getUserbyEmail(email : string)
+    {
+        return this.http.get("api/getuserbyemail/" + email );
+    }
     getUsersfromDB(){
 
         return this.http.get("api/");
@@ -103,17 +110,21 @@ currentuserpassword!: string;
 
     }
 
+    getSoldbooksFromDB(){
+        return this.http.get("api/getsoldbooks/");
+    }
+
     getUserById(id:string)
-    {         const urlid = 'api' + id
+    {         const urlid = 'api/getuserbyid/' + id
                
            return this.http.get(urlid);
 
     }
 
-    addUsertoDB( f : string, l : string, s : string, email:string, c : string, p : string, d: string){
+    addUsertoDB( f : string, l : string, s : string, email:string, p : string){
         p = this.set('123456$#@$^@1ERF', p);
-        const postall : uinfo = { fname : f, lname : l, sex : s, email: email, contact : c, password : p ,         date : d}; 
-         this.http.post("api/", postall).subscribe();
+        const postall  = { fname : f, lname : l, sorb : s, email: email, password : p}; 
+         this.http.post("api/postuser/", postall).subscribe();
         //  this.arr.push(postall);
         //  this.updatedUsers.next([...this.arr]) ;
         this.listner();
@@ -124,11 +135,49 @@ currentuserpassword!: string;
             this.listner();
    }
 
-   editUser(f : string, l : string, s : string, email:string, c : string, p : string , id:string, d : string){
-        const data : uinfo = { fname : f, lname : l, sex : s, email: email, contact : c, password : p, date : d };
+   editUser(f : string, l : string, s : string, email:string,  p : string , id:string, d : string){
+        const data  = { fname : f, lname : l, sorb : s, email: email, password : p, date : d };
         this.http.put("api/"+ id, data).subscribe();
 
    }
+
+pushbook(id : string, bname : string, authname : string, qty : number){
+    
+  const data = {bname : bname , qty : qty , authname : authname};
+    this.http.put("api/pushbook/"+ id , data).subscribe();
+}
+
+putbook(id : string, bname : string, qty : number, authname : string, bid : string){
+    const data = {bname : bname , qty : qty , authname : authname};
+   // console.log("serv" + bid);
+    
+    this.http.put("api/putbook/"+ id + "/" + bid, data).subscribe();
+}
+
+deletebook(id : string, bid:string)
+{
+    this.http.delete("api/deletebook/"+ id + "/" + bid).subscribe();
+}
+
+addsoldbook(sfn :string, sln:string, sem:string, bn:string,auth:string,qty:number )
+{
+    const postall = {sellerfname : sfn, sellerlname:sln, selleremail : sem, bname:bn, authname:auth, qty:qty};
+    this.http.post("api/postsoldbook/", postall).subscribe();
+}
+
+
+editsoldbook(id : string , bn:string,auth:string,qty:number, bid:string )
+{
+    const postall = { bname:bn, authname:auth, qty:qty };
+    this.http.put("api/editsoldbook/"+ id + "/" + bid, postall).subscribe();
+}
+
+pushsoldboks(id : string, bname : string, authname : string, qty : number)
+{
+    const data = {bname : bname , qty : qty , authname : authname};
+    this.http.put("api/pushsoldbook/"+ id , data).subscribe();
+}
+
    set(keys:any, value:any){
     var key = CryptoJS.enc.Utf8.parse(keys);
     var iv = CryptoJS.enc.Utf8.parse(keys);

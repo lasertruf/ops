@@ -10,6 +10,7 @@
     margin-top: 20px;
     padding-top: 50px;
     border-radius: 20px;
+    z-index: 5;
   }
   
   .example-full-width {
@@ -20,11 +21,12 @@
 
   .outer{
     height: 700px;
-
-    background-image: url('../../bgi.jpg');
+    z-index: 5;
+    
+    background-image: url('../../bookbg.jpg');
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-color: rgba(173, 172, 172, 0.527);
+  background-color: rgba(173, 172, 172, 0.727);
   /* background-color: rgba(173, 172, 172, 0.527); */
   
   background-blend-mode: lighten;
@@ -43,6 +45,8 @@ width: 250px;
   }
 
   .mat-tab-label{
-    background-color: #3ab2ae;
-    color: #3ab2ae;
-  }
+  
+    background-color: transparent;
+
+    
+}
